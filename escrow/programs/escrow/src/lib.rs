@@ -1,11 +1,10 @@
-pub mod states;
 pub mod instructions;
+pub mod states;
 
 use anchor_lang::prelude::*;
 pub use instructions::*;
 
 declare_id!("FL2jkurMwrKKY6iB56WoYLWxgW8JMXL7hLuhii3CEkQr");
-
 
 #[program]
 pub mod escrow {
