@@ -34,7 +34,7 @@ sequenceDiagram
 ```
 
 ### Account Structure
-```
+```mermaid
 classDiagram
     class VaultState {
         PDA
