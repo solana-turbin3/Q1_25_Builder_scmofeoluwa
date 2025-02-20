@@ -1,9 +1,40 @@
 use anchor_lang::prelude::*;
+use anchor_spl::{
+    associated_token::AssociatedToken,
+    token::Token,
+    token_interface::{Mint, TokenAccount},
+};
+
+use crate::state::Vault;
 
 #[derive(Accounts)]
-pub struct Initialize {}
+#[instruction(seeds: u64)]
+pub struct Initialize<'info>{
+    #[account(mut)]
+    pub authority: Signer<'info>,
+    #[account(init, payer=authority, space=Vault::LEN, seeds=[b"vault"], bump)]
+    pub vault: Account<'info, Vault>,
+    pub usdc_mint: InterfaceAccount<'info, Mint>,
+    pub collateral_mint: InterfaceAccount<'info, Mint>,
+    #[account(init, payer=authority, associated_token::mint=usdc_mint, associated_token::authority=vault)]
+    pub usdc_account: InterfaceAccount<'info, TokenAccount>,
+    #[account(init, payer=authority, associated_token::mint=collateral_mint, associated_token::authority=vault)]
+    pub k_usdc_account: InterfaceAccount<'info, TokenAccount>,
 
-pub fn handler(ctx: Context<Initialize>) -> Result<()> {
-    msg!("Greetings from: {:?}", ctx.program_id);
-    Ok(())
+    pub system_program: Program<'info, System>,
+    pub token_program: Program<'info, Token>,
+    pub associated_token_program: Program<'info, AssociatedToken>,
+}
+
+impl <'info> Initialize<'info>{
+    pub fn init(&mut self, seed: u64, authority: Pubkey, bumps: &InitializeBumps) -> Result<()>{
+        self.vault.set_inner(Vault{
+            seed,
+            authority,
+            bump: bumps.vault,
+            k_usdc: 0
+        });
+
+        Ok(())
+    }
 }

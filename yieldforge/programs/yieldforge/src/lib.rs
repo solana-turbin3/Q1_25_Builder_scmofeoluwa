@@ -15,7 +15,8 @@ declare_id!("7aoRwRBaXufoCZMaD3H7qdvFqXy6Grb43bEdQ6YzbHoD");
 pub mod yieldforge {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::handler(ctx)
+    pub fn initialize(ctx: Context<Initialize>, seed: u64, authority: Pubkey) -> Result<()> {
+        ctx.accounts.init(seed, authority, &ctx.bumps)?;
+        Ok(())
     }
 }
