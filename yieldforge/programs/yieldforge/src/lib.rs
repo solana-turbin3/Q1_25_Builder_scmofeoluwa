@@ -7,9 +7,8 @@ use anchor_lang::prelude::*;
 
 pub use constants::*;
 pub use instructions::*;
-pub use state::*;
 
-declare_id!("7aoRwRBaXufoCZMaD3H7qdvFqXy6Grb43bEdQ6YzbHoD");
+declare_id!("7fWbkEtHaPg4csLZkmR8Kt2zcfx92YBbmoL1rEDDnnDC");
 
 #[program]
 pub mod yieldforge {
@@ -17,6 +16,16 @@ pub mod yieldforge {
 
     pub fn initialize(ctx: Context<Initialize>, seed: u64, authority: Pubkey) -> Result<()> {
         ctx.accounts.init(seed, authority, &ctx.bumps)?;
+        Ok(())
+    }
+
+    pub fn deposit_into_vault(ctx: Context<VaultPayments>, amount: u64) -> Result<()> {
+        ctx.accounts.deposit(amount)?;
+        Ok(())
+    }
+
+    pub fn deposit_into_kamino(ctx: Context<SolendPayments>, amount: u64) -> Result<()> {
+        ctx.accounts.deposit(amount)?;
         Ok(())
     }
 }

@@ -4,9 +4,12 @@ use anchor_lang::prelude::*;
 #[derive(InitSpace)]
 pub struct Vault {
     pub authority: Pubkey,
-    pub seed: u64, 
+    pub seed: u64,
     pub bump: u8,
-    pub k_usdc: u64,
+    pub usdc_mint: Pubkey,
+    pub collateral_mint: Pubkey,
+    pub total_usdc_deposits: u64,
+    pub total_k_usdc: u64,
 }
 
 impl Vault {
