@@ -14,8 +14,8 @@ declare_id!("7fWbkEtHaPg4csLZkmR8Kt2zcfx92YBbmoL1rEDDnnDC");
 pub mod yieldforge {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>, seed: u64, authority: Pubkey) -> Result<()> {
-        ctx.accounts.init(seed, authority, &ctx.bumps)?;
+    pub fn initialize(ctx: Context<Initialize>, seed: u64) -> Result<()> {
+        ctx.accounts.init(seed, &ctx.bumps)?;
         Ok(())
     }
 
@@ -24,7 +24,27 @@ pub mod yieldforge {
         Ok(())
     }
 
-    pub fn deposit_into_kamino(ctx: Context<SolendPayments>, amount: u64) -> Result<()> {
+    pub fn deposit_into_solend(ctx: Context<SolendPayments>, amount: u64) -> Result<()> {
+        ctx.accounts.deposit(amount)?;
+        Ok(())
+    }
+
+    pub fn deposit_into_kamino(ctx: Context<KaminoPayments>, amount: u64) -> Result<()> {
+        ctx.accounts.deposit(amount)?;
+        Ok(())
+    }
+
+    pub fn withdraw_from_vault(ctx: Context<VaultPayments>, amount: u64) -> Result<()> {
+        ctx.accounts.withdraw(amount)?;
+        Ok(())
+    }
+
+    pub fn withdraw_from_solend(ctx: Context<SolendPayments>, amount: u64) -> Result<()> {
+        ctx.accounts.withdraw(amount)?;
+        Ok(())
+    }
+
+    pub fn withdraw_from_kamino(ctx: Context<KaminoPayments>, amount: u64) -> Result<()> {
         ctx.accounts.deposit(amount)?;
         Ok(())
     }

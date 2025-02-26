@@ -9,6 +9,7 @@ pub struct Vault {
     pub usdc_mint: Pubkey,
     pub collateral_mint: Pubkey,
     pub total_usdc_deposits: u64,
+    pub total_c_usdc: u64,
     pub total_k_usdc: u64,
 }
 
