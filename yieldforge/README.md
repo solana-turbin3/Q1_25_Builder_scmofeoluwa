@@ -87,5 +87,5 @@ classDiagram
 The program has been deployed to Solana Devnet with the following program ID:
 
 ```bash
-Program ID: 2BLMrqHJpizWqyeodRFfom9FrkDcAAu385whp8y6rDeg
+Program ID: FfVpsFLmj4ZsCzXPEWJYFCBaRPTQaxmDz2GxFzbpu5TP
 ```

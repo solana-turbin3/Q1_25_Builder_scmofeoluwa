@@ -8,7 +8,7 @@ use anchor_lang::prelude::*;
 pub use constants::*;
 pub use instructions::*;
 
-declare_id!("7fWbkEtHaPg4csLZkmR8Kt2zcfx92YBbmoL1rEDDnnDC");
+declare_id!("FfVpsFLmj4ZsCzXPEWJYFCBaRPTQaxmDz2GxFzbpu5TP");
 
 #[program]
 pub mod yieldforge {
